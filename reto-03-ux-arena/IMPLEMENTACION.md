@@ -4,7 +4,7 @@ Interfaz local del reto 3, sin dependencias, conexión ni compilación.
 
 ## Abrir
 
-En el proyecto, abre `base/index.html`. En el ZIP de entrega, descomprime todo y abre `index.html` en la raíz. Los botones exteriores simulan Cerrado, Abierto y Flex.
+Equipo **Dobles parejas**. Abre `index.html` en la raíz (redirige a `base/index.html`), tanto en el proyecto como en el ZIP de entrega descomprimido. Los botones exteriores simulan Cerrado, Abierto y Flex.
 
 ## Recorrido
 
@@ -24,4 +24,6 @@ Desde esta carpeta, con Node.js disponible: `node --test tests/app.test.mjs`.
 
 Cuatro pruebas de lógica cubren selección y sustitución, huecos y continuidad entre modos, referencia por arrastre, validación de archivos y liberación de URL temporales. No sustituyen una revisión visual ni una prueba real con teclado en el navegador. La política del navegador integrado bloqueó la apertura de archivos `file:`, por lo que esa revisión está pendiente.
 
-El ZIP usa `equipo-N-ux.zip` como nombre provisional: sustituye N por el número de equipo antes de entregarlo.
+El ZIP de entrega es `equipo-dobles-parejas-ux.zip` (en la carpeta superior). Si la organización da un número de equipo, renómbralo a `equipo-N-ux.zip`.
+
+Las ilustraciones de los alojamientos son SVG propios en `base/img/`; `recursos/` queda como lo entregó la organización.
