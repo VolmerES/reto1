@@ -1,0 +1,13 @@
+package dev.bughunt.shop.orders;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import java.util.List;
+
+public record PlaceOrderRequest(
+        @NotBlank String customerId,
+        @NotBlank String card,
+        String couponCode,
+        @NotEmpty List<@Valid OrderItemRequest> items) {
+}

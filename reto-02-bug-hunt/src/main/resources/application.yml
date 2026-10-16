@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: bug-hunt-shop
+  main:
+    banner-mode: "off"
+  datasource:
+    url: "jdbc:h2:mem:shop-${random.uuid};LOCK_TIMEOUT=10000"
+    username: sa
+  jpa:
+    open-in-view: false
+  cache:
+    cache-names: promotions, publicPromotions
+
+server:
+  address: 127.0.0.1
+
+sandbox:
+  bank:
+    latency: 300ms
+  warehouse:
+    latency: 150ms
+
+logging:
+  level:
+    org.springframework.test: warn
+    org.springframework.boot.test: warn

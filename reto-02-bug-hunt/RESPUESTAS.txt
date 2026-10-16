@@ -1,0 +1,22 @@
+RESPUESTAS
+==========
+
+Equipo: Dobles parejas
+
+Una frase por bug contando qué fallaba.
+
+
+Bug 1 - La cantidad negativa:
+El @InitBinder de OrderController usaba setValidator, que sustituye la validación de Bean Validation por la de la tarjeta, así que @Positive en la cantidad nunca se comprobaba; ahora usa addValidators y se aplican las dos.
+
+Bug 2 - El cupón:
+La columna discountRate de Coupon tenía precision = 3 sin scale (escala 0), así que 0.15 se guardaba como 0 y el cupón no descontaba nada; ahora es scale = 2.
+
+Bug 3 - La última unidad:
+El stock se comprobaba y se descontaba en pasos separados sin bloqueo (comprobar y luego actuar), y dos pedidos simultáneos veían la misma unidad libre; ahora se descuenta antes de cobrar con un bloqueo de fila (PESSIMISTIC_WRITE), así que el segundo espera, ve 0 y recibe 409 sin que se le cobre.
+
+Bug 4 - La cancelación:
+RestockOnCancellation se ejecuta después del commit y se unía a esa transacción ya cerrada, así que la reposición nunca se guardaba; ahora abre una propia (REQUIRES_NEW). Además, el evento se publicaba dos veces (registerEvent en Order y publishEvent en el servicio), lo que habría repuesto el doble; queda solo el del servicio.
+
+Bug 5 - El precio de socio:
+La página pública (solo promociones para todos) y el cálculo de precios compartían la caché "promotions" con la misma clave (el SKU), así que tras ver la página el pedido del socio recibía la lista sin la promoción de socio; ahora la página usa su propia caché, las dos se invalidan al crear una promoción y usableBy ya no modifica la lista guardada en caché.
