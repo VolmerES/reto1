@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Operación Galaxy</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Samsung Dev Spain, inicio"><img class="brand-logo" src="/samsung-dev-spain.png" alt="Samsung Dev Spain" width="388" height="44"></a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><h1 id="page-title">Operación <span>Galaxy</span></h1></div>
+      <div class="connection"><span id="connection-badge" class="badge neutral">Comprobando backend</span><span id="model-name">Modelo por comprobar</span><button id="refresh" class="link-button" type="button">↻ Comprobar conexión</button></div>
+    </section>
+    <p id="notice" class="notice" role="status" hidden></p>
+    <div class="workspace">
+      <section class="panel assistant-panel" aria-labelledby="assistant-title">
+        <div class="panel-head"><h2 id="assistant-title">Asistente de producción</h2><span class="ai-icon" aria-hidden="true">✧</span></div>
+        <div class="messages" id="messages" role="log" aria-label="Conversación" aria-live="polite" aria-relevant="additions">
+          <article class="message welcome"><p>Consulta el dossier y la disponibilidad, asigna dispositivos o libéralos.</p></article>
+        </div>
+        <div class="composer-area">
+          <div class="examples"><button type="button" data-prompt="¿Qué dispositivos están disponibles?">Ver disponibilidad ↗</button><button type="button" data-prompt="Asigna dos Fold8 a la Sala Azul">Asignar Fold8 ↗</button><button type="button" data-prompt="¿Cuál es el aforo y el horario de la Sala Azul?">Consultar el dossier ↗</button></div>
+          <form id="message-form">
+            <label class="sr-only" for="prompt">Tu petición al asistente</label>
+            <textarea id="prompt" name="prompt" maxlength="2000" rows="3" placeholder="Por ejemplo: «Libera F8-01»" required></textarea>
+            <div class="composer-bottom"><span id="request-status" role="status">Enter para enviar · Mayús + Enter para nueva línea</span><button id="send" class="primary-button" type="submit">Enviar <span aria-hidden="true">↗</span></button></div>
+          </form>
+        </div>
+      </section>
+      <section class="panel inventory-panel" aria-labelledby="inventory-title">
+        <div class="panel-head"><h2 id="inventory-title">Inventario</h2></div>
+        <div id="metrics" class="metrics"><div><strong id="total-count">—</strong><span>unidades</span></div><div><strong id="free-count">—</strong><span>disponibles</span></div><div><strong id="assigned-count">—</strong><span>asignadas</span></div></div>
+        <div class="filters"><label>Modelo<select id="model-filter"><option value="">Todos los modelos</option></select></label><label>Sala<select id="room-filter"><option value="">Todas las salas</option><option value="available">Sin asignar</option></select></label></div>
+        <div class="table-wrap"><table><caption class="sr-only">Estado actual de los dispositivos</caption><thead><tr><th>Unidad / modelo</th><th>Estado</th><th>Sala</th></tr></thead><tbody id="device-list"><tr><td colspan="3" class="empty">Conecta el backend para consultar las unidades.</td></tr></tbody></table></div>
+        <div class="rooms-head"><h3>Distribución por salas</h3><span id="updated-at">Aún sin consultar</span></div>
+        <div id="room-list" class="rooms"><p class="quiet">Las salas aparecerán con el inventario.</p></div>
+        <div class="inventory-footer"><button id="reset" class="link-button" type="button" disabled>Restablecer inventario</button></div>
+      </section>
+    </div>
+    <details class="panel dossier-panel" id="dossier-panel"><summary><strong>Dossier de producción</strong><span class="summary-meta"><span id="dossier-count">Sin consultar</span> <span aria-hidden="true">＋</span></span></summary><div id="dossier-list" class="dossier-grid"><p class="quiet">Conecta el backend para cargar las fichas.</p></div></details>
+    <details class="panel debug-panel"><summary><strong>Detalle técnico</strong><span aria-hidden="true">＋</span></summary><div class="debug-content"><p>Última petición y respuesta HTTP. Los tiempos son del navegador; no acreditan inferencia por sí solos.</p><button id="export" type="button" class="secondary-button">Descargar registro de esta sesión</button><pre id="debug-output">Todavía no se han enviado peticiones.</pre></div></details>
+  </main>
+  <noscript>Esta interfaz necesita JavaScript activado en el navegador.</noscript>
+</body>
+</html>
