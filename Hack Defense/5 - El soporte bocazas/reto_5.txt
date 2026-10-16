@@ -5,4 +5,5 @@ El login no es vulnerable a SQLi ni a fuerza bruta, por ahí no van los tiros. P
 Haz login y consigue la flag.
 
 Respuesta válida: la flag, con formato CTF{ejemplo}.
+CTF{la_IA_no_quita_trabajo}
 Puntuacion: 20 puntos
