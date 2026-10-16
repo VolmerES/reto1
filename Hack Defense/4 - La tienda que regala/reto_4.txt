@@ -5,4 +5,5 @@ Contrata algo en su tienda y haz que te salga gratis del todo (0 €). Cuando lo
 Importante: nada de fuerza bruta ni ataques de denegación de servicio (DoS). El reto está únicamente en https://cobrabotctf.top/.
 
 Respuesta válida: la flag, con formato CTF{ejemplo}.
+CTF{asi_compran_los_hackers}
 Puntuacion: 20 puntos
