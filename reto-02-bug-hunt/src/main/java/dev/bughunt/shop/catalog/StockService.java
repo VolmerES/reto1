@@ -2,23 +2,31 @@ package dev.bughunt.shop.catalog;
 
 import dev.bughunt.shop.common.NotFoundException;
 import dev.bughunt.shop.common.ShopService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import org.springframework.transaction.annotation.Transactional;
 
 @ShopService
 public class StockService {
 
     private final ProductRepository products;
+    private final EntityManager entityManager;
 
-    public StockService(ProductRepository products) {
+    public StockService(ProductRepository products, EntityManager entityManager) {
         this.products = products;
+        this.entityManager = entityManager;
     }
 
-    /** Takes the units out of stock, waiting for any other order that is taking the same product. */
+    /**
+     * Takes the units out of stock. The row stays locked until the order is committed, so a second
+     * order for the same product waits and then sees the real stock: the refresh reloads it from the
+     * database instead of trusting the copy this transaction may already have in memory.
+     */
     @Transactional
     public void removeUnits(String sku, int units) {
-        products.findForUpdate(sku)
-                .orElseThrow(() -> new NotFoundException("Product", sku))
-                .removeFromStock(units);
+        Product product = findProduct(sku);
+        entityManager.refresh(product, LockModeType.PESSIMISTIC_WRITE);
+        product.removeFromStock(units);
     }
 
     @Transactional
