@@ -10,8 +10,9 @@ import dev.bughunt.shop.customers.CustomerService;
 import dev.bughunt.shop.payments.Bank;
 import dev.bughunt.shop.pricing.PricingService;
 import java.math.BigDecimal;
-import java.util.Comparator;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,15 +42,19 @@ public class OrderService {
     @Transactional
     public OrderResponse placeOrder(PlaceOrderRequest request) {
         Customer customer = customers.getCustomer(request.customerId());
+
+        // Las unidades se reservan antes de nada y antes de cobrar: si el pago falla, la transacción
+        // las devuelve al estante. Por SKU y en orden, para que dos pedidos no se interbloqueen, y
+        // sumando las líneas repetidas de un mismo producto, porque la reserva relee la fila de la base
+        // bajo bloqueo y un segundo descuento del mismo SKU perdería el anterior, aún sin guardar.
+        request.items().stream()
+                .collect(Collectors.groupingBy(OrderItemRequest::sku, TreeMap::new,
+                        Collectors.summingInt(OrderItemRequest::quantity)))
+                .forEach(stock::removeUnits);
+
         List<OrderLine> lines = request.items().stream()
                 .map(item -> toOrderLine(item, customer))
                 .toList();
-
-        // We never charge for something we can't send: the units are reserved first, under a lock,
-        // and go back to the shelf if the payment fails. Sorted by SKU so two orders can't deadlock.
-        lines.stream()
-                .sorted(Comparator.comparing(OrderLine::sku))
-                .forEach(line -> stock.removeUnits(line.sku(), line.quantity()));
 
         BigDecimal total = pricing.applyCoupon(subtotalOf(lines), request.couponCode());
         bank.charge(customer.id(), request.card(), total);

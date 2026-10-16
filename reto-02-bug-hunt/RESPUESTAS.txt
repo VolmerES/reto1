@@ -13,7 +13,7 @@ Bug 2 - El cupón:
 La columna discountRate de Coupon tenía precision = 3 sin scale (escala 0), así que 0.15 se guardaba como 0 y el cupón no descontaba nada; ahora es scale = 2.
 
 Bug 3 - La última unidad:
-El stock se comprobaba y se descontaba en pasos separados sin bloqueo (comprobar y luego actuar), y dos pedidos simultáneos veían la misma unidad libre; ahora se descuenta antes de cobrar, releyendo el producto de la base con bloqueo de fila (refresh con PESSIMISTIC_WRITE), así que el segundo espera, ve 0 y recibe 409 sin que se le cobre.
+El stock se comprobaba y se descontaba sin bloqueo y, además, el pedido ya había cargado el producto sin bloqueo para calcular el precio: Hibernate no refresca una entidad ya cargada aunque luego se consulte con FOR UPDATE, así que el segundo pedido conseguía el bloqueo pero seguía viendo stock 1 y la última unidad se vendía dos veces (201 y 201); ahora las unidades se reservan antes de nada y antes de cobrar, por SKU en orden y sumando las líneas repetidas, releyendo el producto de la base con bloqueo de fila (refresh con PESSIMISTIC_WRITE), así que el segundo espera, ve 0 y recibe 409 sin que se le cobre.
 
 Bug 4 - La cancelación:
 RestockOnCancellation se ejecuta después del commit y se unía a esa transacción ya cerrada, así que la reposición nunca se guardaba; ahora abre una propia (REQUIRES_NEW). Además, el evento se publicaba dos veces (registerEvent en Order y publishEvent en el servicio), lo que habría repuesto el doble; queda solo el del servicio.
