@@ -1,4 +1,3 @@
+# Común a todos los proyectos; cada uno puede llevar además el suyo.
 node_modules/
 .env
-results/
-

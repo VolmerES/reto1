@@ -1,0 +1,5 @@
+/* Construid aquí los estilos de vuestra interfaz. */
+#app { height: 100%; overflow: auto; }
+.placeholder { margin: 24px; color: #727b6d; font: 14px/1.5 Arial, sans-serif; }
+/* Contextos: #experience[data-mode="cerrado"], [data-mode="abierto"],
+   [data-mode="flex"]. Consultad CONTRATO.md para las dimensiones. */
