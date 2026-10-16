@@ -3,4 +3,5 @@ Ya sabes quién es. Y resulta que el crack de la ciberseguridad guarda sus secre
 Entre sus proyectos se le escapó una clave de API de Anthropic. Róbasela.
 
 Respuesta válida: su API Key de Anthropic.
+sk-ant-api03-CTF-N0-ES-REAL-7f3b2a91c4d6e805
 Puntuacion: 10 puntos
