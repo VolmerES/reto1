@@ -1,0 +1,8 @@
+Siguiendo su rastro das con su otro chollo: CobraBot, su propio SaaS, con una web en pruebas en https://cobrabotctf.top/. El gurú que vende seguridad... veamos qué tal lleva la suya.
+
+Contrata algo en su tienda y haz que te salga gratis del todo (0 €). Cuando lo consigas, se te dará una flag.
+
+Importante: nada de fuerza bruta ni ataques de denegación de servicio (DoS). El reto está únicamente en https://cobrabotctf.top/.
+
+Respuesta válida: la flag, con formato CTF{ejemplo}.
+Puntuacion: 20 puntos

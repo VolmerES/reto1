@@ -1,0 +1,7 @@
+CobraBot tiene un panel de cliente en https://cobrabotctf.top/profile/cuenta. Con tu cuenta normal puedes cambiar cuatro cosas y poco más... pero hay un botón muy goloso, “Exportar base de clientes”, reservado a administradores.
+
+Conviértete en administrador y expórtala.
+
+Respuesta válida: la flag, con formato CTF{ejemplo}.
+
+Puntuacion: 25 puntos

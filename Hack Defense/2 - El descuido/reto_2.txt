@@ -1,0 +1,6 @@
+Ya sabes quién es. Y resulta que el crack de la ciberseguridad guarda sus secretos tan bien como tú: regular.
+
+Entre sus proyectos se le escapó una clave de API de Anthropic. Róbasela.
+
+Respuesta válida: su API Key de Anthropic.
+Puntuacion: 10 puntos

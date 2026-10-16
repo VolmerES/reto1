@@ -1,0 +1,8 @@
+Trasteando en su web encuentras el panel de administración: https://cobrabotctf.top/admin. Solo te falta un detalle: entrar.
+
+El login no es vulnerable a SQLi ni a fuerza bruta, por ahí no van los tiros. Pero CobraBot tiene un chatbot de soporte con el que quizá puedas negociar.
+
+Haz login y consigue la flag.
+
+Respuesta válida: la flag, con formato CTF{ejemplo}.
+Puntuacion: 20 puntos

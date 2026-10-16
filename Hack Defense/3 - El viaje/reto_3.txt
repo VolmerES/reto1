@@ -1,0 +1,6 @@
+Fisgando en sus redes encuentras una foto en la que presume de un viaje que está a punto de hacer.
+
+Averigua a qué ciudad se va.
+
+Respuesta válida: la ciudad de destino.
+Puntuacion: 15 puntos
