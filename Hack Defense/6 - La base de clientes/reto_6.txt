@@ -3,5 +3,5 @@ CobraBot tiene un panel de cliente en https://cobrabotctf.top/profile/cuenta. Co
 Conviértete en administrador y expórtala.
 
 Respuesta válida: la flag, con formato CTF{ejemplo}.
-
+CTF{menudo_hacker_estas_hecho}
 Puntuacion: 25 puntos
